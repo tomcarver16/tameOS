@@ -1,17 +1,9 @@
-#include "../drivers/ports.h"
+#include "../drivers/screen.h"
 
 void main() {
-  int pos;
-  int vga_offset;
-  port_byte_out(0x3d4, 14);
-  pos = port_byte_in(0x3d5);
-  pos = pos << 8;
-
-  port_byte_out(0x3d4, 15);
-  pos += port_byte_in(0x3d5);
-  vga_offset = pos * 2;
-
-  char* video_memory = 0xb8000;
-  video_memory[vga_offset] = 'X';
-  video_memory[vga_offset+1] = 0x0f;
+  clear_screen();
+  kprint_offset("X", 1, 6);
+  kprint_offset("Across multiple lines", 75, 10);
+  kprint("There is a line\nbreak!");
+  kprint_offset("What's going on if run out of space", 45, 24);
 }
