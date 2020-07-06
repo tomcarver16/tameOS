@@ -8,5 +8,5 @@
 #define REG_SCREEN_DATA 0x3D5
 
 void clear_screen();
-void kprint_at(char* msg, int row, int col);
+void kprint_offset(char* msg, int row, int col);
 void kprint(char* msg);

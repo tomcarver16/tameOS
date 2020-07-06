@@ -1,9 +1,15 @@
 #include "../drivers/screen.h"
+#include "util.h"
 
 void main() {
+  int i;
   clear_screen();
-  kprint_offset("X", 1, 6);
-  kprint_offset("Across multiple lines", 75, 10);
-  kprint("There is a line\nbreak!");
-  kprint_offset("What's going on if run out of space", 45, 24);
+  for (i = 0; i < 24; i++) {
+    char str[255];
+    itoa(i, str);
+    kprint_offset(str, 0, i);
+  }
+  
+  kprint_offset("This text forces the kernel to scroll. Row 0 will disappear", 60, 24);
+  kprint("And with this text, the kernel will scroll again, and row 1 will disappear");
 }
